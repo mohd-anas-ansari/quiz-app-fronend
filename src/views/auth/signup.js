@@ -13,10 +13,12 @@ class Signup extends React.Component {
   };
 
   handleChange = (e) => {
+    e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = async () => {
+  handleSubmit = async (e) => {
+    e.preventDefault();
     if (this.state.isPosting) {
       return;
     }
@@ -50,78 +52,79 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="columns is-mobile">
-          <div className="column is-half is-offset-one-quarter">
-            <h1 className="title is-4 has-text-centered">Signup</h1>
-            <div style={{ background: "green", color: "white" }}>
-              {this.state.successMsg}
-            </div>
-            <div style={{ background: "red", color: "white" }}>
-              {this.state.errorMsg}
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input"
-                  name="name"
-                  placeholder="Name"
-                  type="text"
-                  value={this.state.name}
-                  onChange={(e) => this.handleChange(e)}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-user"></i>
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fas fa-check"></i>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input"
-                  name="email"
-                  placeholder="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={(e) => this.handleChange(e)}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope"></i>
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fas fa-check"></i>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left">
-                <input
-                  className="input"
-                  name="password"
-                  placeholder="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={(e) => this.handleChange(e)}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div className="has-text-right">
-              <button
-                className="button is-primary"
-                onClick={() => this.handleSubmit()}
-              >
-                {this.state.isPosting ? "Submitting" : "Submit"}
-              </button>
+      <section className="bg_signup">
+        <div className="container">
+          <div style={{ background: "green", color: "white" }}>
+            {this.state.successMsg}
+          </div>
+          <div style={{ background: "red", color: "white" }}>
+            {this.state.errorMsg}
+          </div>
+          <div className="row">
+            <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+              <div className="card card-signin my-5">
+                <div className="card-body">
+                  <h5 className="card-title text-center">Register</h5>
+                  <form className="form-signin">
+                    <div className="form-label-group">
+                      <input
+                        type="text"
+                        name="name"
+                        id="inputUsername"
+                        className="form-control "
+                        placeholder="User Name"
+                        value={this.state.username}
+                        onChange={(e) => this.handleChange(e)}
+                        required
+                        autoFocus
+                      />
+                      <label htmlFor="inputUsername">User Name</label>
+                    </div>
+                    <div className="form-label-group">
+                      <input
+                        type="email"
+                        name="email"
+                        id="inputEmail"
+                        className="form-control"
+                        value={this.state.email}
+                        placeholder="Email address"
+                        onChange={(e) => this.handleChange(e)}
+                        required
+                      />
+                      <label htmlFor="inputEmail">Email address</label>
+                    </div>
+
+                    <div className="form-label-group">
+                      <input
+                        type="password"
+                        name="password"
+                        id="inputPassword"
+                        className="form-control "
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={(e) => this.handleChange(e)}
+                        required
+                      />
+                      <label htmlFor="inputPassword">Password</label>
+                    </div>
+
+                    <button
+                      onClick={(e) => this.handleSubmit(e)}
+                      className="btn btn-lg btn-primary btn-block text-uppercase my-4"
+                      type="submit">
+                      Signup
+                    </button>
+                  </form>
+                  <div className="my-2">
+                    {" "}
+                    Already has an account. <Link to="/login"> Login</Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }

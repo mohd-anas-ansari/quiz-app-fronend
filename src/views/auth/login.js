@@ -11,55 +11,73 @@ class Login extends React.Component {
   handleSubmit = () => {};
   render() {
     return (
-      <div className="container">
-        <div className="columns is-mobile">
-          <div className="column is-half is-offset-one-quarter">
-            <h1 className="title is-4 has-text-centered">Login</h1>
+      <section className="bg_login">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+              <div className="card card-signin my-5">
+                <div className="card-body">
+                  <h5 className="card-title text-center">Sign In</h5>
+                  <form className="form-signin">
+                    <div className="form-label-group">
+                      <input
+                        onChange={(e) => this.handleInput(e)}
+                        name="email"
+                        type="email"
+                        id="inputEmail"
+                        className="form-control"
+                        placeholder="Email address"
+                        value={this.state.email}
+                        required
+                        autoFocus
+                      />
+                      <label htmlFor="inputEmail">Email address</label>
+                    </div>
 
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input"
-                  name="email"
-                  placeholder="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={(e) => this.handleChange(e)}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope"></i>
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fas fa-check"></i>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left">
-                <input
-                  className="input"
-                  name="password"
-                  placeholder="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={(e) => this.handleChange(e)}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div className="has-text-right">
-              <button
-                className="button is-primary"
-                onClick={() => this.handleSubmit()}
-              >
-                login
-              </button>
+                    <div className="form-label-group">
+                      <input
+                        onChange={(e) => this.handleInput(e)}
+                        name="password"
+                        type="password"
+                        id="inputPassword"
+                        className="form-control "
+                        placeholder="Password"
+                        value={this.state.password}
+                        required
+                      />
+                      <label htmlFor="inputPassword">Password</label>
+                    </div>
+
+                    <div className="custom-control custom-checkbox mb-3">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input"
+                        id="customCheck1"
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor="customCheck1">
+                        Remember password
+                      </label>
+                    </div>
+                    <button
+                      onClick={(e) => this.userLogin(e)}
+                      className="btn btn-lg btn-primary btn-block text-uppercase"
+                      type="primary">
+                      Sign in
+                    </button>
+                    <hr className="my-4" />
+                  </form>
+                  <div className="my-2">
+                    {" "}
+                    Does't have an account. <a href="/signup"> Signup</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }
